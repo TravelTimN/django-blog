@@ -3,4 +3,4 @@ python:
     - "3.6"
 install: "pip install -r requirements.txt"
 script:
-    - SECRET_KEY="dummySecretKey" ./manage.py test
+    - SECRET_KEY="dummySecretKey" python manage.py test
