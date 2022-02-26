@@ -12,14 +12,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-development = True if os.getenv("DEVELOPMENT") else False
-DEBUG = development
+DEBUG = os.environ.get("DEBUG")
 
 ALLOWED_HOSTS = []
-host = os.getenv("SITE_HOST")
+host = os.environ.get("SITE_HOST")
 if host:
     ALLOWED_HOSTS.append(host)
 
@@ -77,7 +76,7 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 
 if "DATABASE_URL" in os.environ:
     DATABASES = {
-        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 else:
     print("Postgres URL not found, using sqlite instead")
